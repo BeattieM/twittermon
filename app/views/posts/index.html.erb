@@ -1,0 +1,22 @@
+<div class="banner-spacer spacer-top">
+  <% if user_signed_in? %>
+    <%= link_to('Logout', destroy_user_session_path, :method => :delete, :class => "btn btn-success log-button") %>
+  <% else %>
+    <%= link_to('Login', new_user_session_path, :class => "btn btn-success log-button")  %>
+  <% end %>
+</div>
+<div id="banner-wrapper">
+  <img id="banner" src="/images/pokemon_banner.png">
+</div>
+<div class="banner-spacer spacer-bottom"></div>
+<div id='content'>
+  <div id="content-header" class="<%= 'logged-in' if user_signed_in? %>">
+    <% if user_signed_in? %>
+      <%= render "create_form", post: @post %>
+    <% end %>
+  </div>
+  <span id="current_user" class="<%= user_signed_in? ? current_user.id : 0 %>">
+  <%= render "posts", posts: @posts %>
+  <div id="content-footer"></div>
+</div>
+<%= render "modals" %>

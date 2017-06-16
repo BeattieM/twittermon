@@ -1,0 +1,33 @@
+<div id="posts">
+  <% if posts.count > 0 %>
+    <% posts.each do |p| %>
+      <div class='post' id="<%= p.uuid %>">
+        <div class='post-pokemon'>
+          <%= image_tag(p.pokemon.sprite) %>
+        </div>
+        <div class='post-content'>
+          <p class='date'>
+            <%= p.created_at.strftime("%-d %b %Y") %>
+            <% if current_user == p.user %>
+              <span class='controls'>
+                <button class="astext edit-post" value="<%= p.uuid %>">edit</button> - <button class="astext delete-post" value="<%= p.uuid %>">delete</button>
+              <span>
+            <% end %>
+          </p>
+          <p id="post_<%= p.uuid %>_comment"><%= p.comment %></p>
+        </div>
+      </div>
+    <% end %>
+    <div class='post' id="no-posts" style="display: none;">
+      <div style="text-align: center;width: 100%;height: 100px;line-height: 100px;">
+        <p>No Posts Available</p>
+      </div>
+    </div>
+  <% else  %>
+    <div class='post' id="no-posts">
+      <div style="text-align: center;width: 100%;height: 100px;line-height: 100px;">
+        <p>No Posts Available</p>
+      </div>
+    </div>
+  <% end %>
+</div>

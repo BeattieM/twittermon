@@ -1,0 +1,9 @@
+<div class='post-pokemon'>
+  <%= image_tag("/images/pokeball.png", :id => 'pokeball') %>
+</div>
+<div class='post-content'>
+  <%= form_for post, remote: true, authenticity_token: true do |f| %>
+    <%= f.text_area :comment, placeholder: "What's happening?", rows: 1, maxlength: 140 %>
+    <%= f.submit :id => "submit-post", :class => "btn btn-success", :disabled => true %>
+  <% end %>
+</div>

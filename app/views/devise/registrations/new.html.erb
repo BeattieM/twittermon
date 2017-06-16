@@ -1,0 +1,36 @@
+<div class="modal-content">
+  <div class="modal-header" align="center">
+    <img id="img_logo" src="/images/pokeball.png">
+  </div>
+  <div id="div-forms">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= raw devise_error_messages!.split(%r{(?<=<h2>).*(?=<\/h2>)}).join('') %>
+      <div class="modal-body">
+        <div id="div-login-msg" class="<%= flash[:alert] ? ((flash[:alert].include? 'Invalid') ? 'error' : '') : '' %>">
+          <span id="text-login-msg">
+            <%= flash[:alert] ? flash[:alert] : "" %>
+          </span>
+        </div>
+        <div class="field">
+          <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email", required: "", autocomplete: "off"%>
+        </div>
+        <br />
+        <div class="field">
+          <%= f.password_field :password, class: "form-control", placeholder: (@minimum_password_length ? "Password (#{@minimum_password_length} characters minimum)"  : 'Password'), required: "", autocomplete: "off" %>
+        </div>
+        <br />
+        <div class="field">
+          <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Confirm Password", required: "", autocomplete: "off" %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="actions">
+          <%= f.submit "Sign up", class: "btn btn-success btn-lg btn-block" %>
+        </div>
+        <div>
+          <%= link_to "Log in", new_session_path(resource_name), class: "btn btn-link" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

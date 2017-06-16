@@ -1,0 +1,37 @@
+<div class="modal-content">
+  <div class="modal-header" align="center">
+    <img id="img_logo" src="/images/pokeball.png">
+  </div>
+  <div id="div-forms">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="modal-body">
+        <div id="div-login-msg" class="<%= flash[:alert] ? ((flash[:alert].include? 'Invalid') ? 'error' : '') : '' %>">
+          <span id="text-login-msg">
+            <%= flash[:alert] ? flash[:alert] : "" %>
+          </span>
+        </div>
+        <div class="field">
+          <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email", required: "", autocomplete: "off"%>
+        </div>
+        <br />
+        <div class="field">
+          <%= f.password_field :password, class: "form-control", placeholder: "Password", required: "", autocomplete: "off" %>
+        </div>
+        <% if devise_mapping.rememberable? -%>
+          <div class="field">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end -%>
+      </div>
+      <div class="modal-footer">
+        <div class="actions">
+          <%= f.submit "Log in", class: "btn btn-success btn-lg btn-block" %>
+        </div>
+        <div>
+          <%= link_to "Sign up", new_registration_path(resource_name), class: "btn btn-link" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
